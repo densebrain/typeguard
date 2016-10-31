@@ -1,0 +1,45 @@
+{
+  "name": "typeguard",
+  "version": "0.0.1",
+  "description": "TypeScript TypeGuards",
+  "main": "dist/index.js",
+  "typings":"dist/index.d.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "files": [
+    "dist/index.js",
+    "package.json",
+    "README.md"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/densebrain/typeguard.git"
+  },
+  "keywords": [
+    "typescript",
+    "guard",
+    "typeguard",
+    "typesafe",
+    "type",
+    "check"
+  ],
+  "author": "Jonathan Glanz",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/densebrain/typeguard/issues"
+  },
+  "homepage": "https://github.com/densebrain/typeguard#readme",
+  "dependencies": {
+    "immutable": "^3.8.1",
+    "lodash.isfunction": "^3.0.8",
+    "lodash.isnil": "^4.0.0",
+    "lodash.isnumber": "^3.0.3",
+    "lodash.isobject": "^3.0.2",
+    "lodash.isstring": "^4.0.1"
+  },
+  "devDependencies": {
+    "@types/node": "^6.0.46",
+    "typescript": "^2.1.0-dev.20161031"
+  }
+}
