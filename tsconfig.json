@@ -17,9 +17,16 @@
 		"sourceMap": true,
 		"pretty": true,
 		"outDir": "./dist",
+		
 		"paths": {
 			"*": [
-				"*"
+				"./*"
+			],
+			"typeguard": [
+				"./index"
+			],
+			"typeguard/*": [
+				"./*"
 			]
 		},
 		"baseUrl": "./src"
@@ -27,7 +34,6 @@
 	"exclude": [
 		"dist",
 		"node_modules"
-		
 	]
 	
 }
