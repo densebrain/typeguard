@@ -59,3 +59,28 @@ export function makeTypeGuard<T>(type:{new():T},tester:(val:any) => boolean):TTy
 export function toNumber(str:string|number):number {
 	return isNumber(str) ? str : parseInt(str,10)
 }
+
+
+
+/**
+ * Get a value in a guarded fashion
+ * ensuring no exception
+ *
+ * @param fn
+ * @param defaultValue
+ * @returns {any}
+ */
+export function getValue<T>(fn:() => T,defaultValue:T = null):T {
+	let
+		result
+	
+	try {
+		result = fn()
+	} catch (err) {
+	}
+	
+	if (isNil(result))
+		result = defaultValue
+	
+	return result
+}
