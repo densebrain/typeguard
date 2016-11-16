@@ -1,10 +1,10 @@
 
 import { List, Map, Record } from 'immutable'
-import _isNil = require('lodash/isnil')
-import _isObject = require('lodash/isobject')
-import _isString = require('lodash/isstring')
-import _isNumber = require('lodash/isnumber')
-import _isFunction = require('lodash/isfunction')
+import _isNil = require('lodash/isNil')
+import _isObject = require('lodash/isObject')
+import _isString = require('lodash/isString')
+import _isNumber = require('lodash/isNumber')
+import _isFunction = require('lodash/isFunction')
 
 export type TNil = undefined|null
 
