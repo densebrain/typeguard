@@ -5,8 +5,10 @@
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
   "scripts": {
+    "compile": "tsc --project tsconfig.json",
+    "compile:watch": "tsc --project tsconfig.json --watch",
     "test": "jest",
-    "test-watch": "jest --watch"
+    "test:watch": "jest --watch"
   },
   "files": [
     "dist/**",
