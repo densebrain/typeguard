@@ -1,6 +1,6 @@
 {
   "name": "typeguard",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "description": "TypeScript TypeGuards",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
