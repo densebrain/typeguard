@@ -9,7 +9,7 @@
     "compile:watch": "tsc --project tsconfig.json --watch",
     "test": "jest",
     "test:watch": "jest --watch",
-    "release": "npm test && npm version patch && git push --tags && npm publish"
+    "release": "npm run compile && npm test && npm version patch && git push --tags && npm publish"
   },
   "files": [
     "dist",
