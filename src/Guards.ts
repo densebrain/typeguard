@@ -72,26 +72,3 @@ export function toNumber(str:string|number):number {
 }
 
 
-
-/**
- * Get a value in a guarded fashion
- * ensuring no exception
- *
- * @param fn
- * @param defaultValue
- * @returns {any}
- */
-export function getValue<T>(fn:() => T,defaultValue:T = null):T {
-	let
-		result
-	
-	try {
-		result = fn()
-	} catch (err) {
-	}
-	
-	if (isNil(result))
-		result = defaultValue
-	
-	return result
-}

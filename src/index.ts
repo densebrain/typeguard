@@ -1,1 +1,2 @@
-export * from './TypeGuard'
+export * from './Guards'
+export * from './Tools'
