@@ -15,6 +15,7 @@ export function getValue<T>(fn:() => T,defaultValue:T = null):T {
 	try {
 		result = fn()
 	} catch (err) {
+		console.warn(err)
 	}
 	
 	if (isNil(result))
