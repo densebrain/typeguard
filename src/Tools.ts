@@ -35,6 +35,6 @@ export function guard(fn:() => any) {
 	try {
 		fn()
 	} catch (err) {
-		return
+		console.warn(err)
 	}
 }
