@@ -1,5 +1,14 @@
 
 import { isNil } from "./Guards"
+
+export type GuardErrorHandler = (err:Error) => void
+
+let guardErrorHandler_:GuardErrorHandler | null
+
+export function setGuardErrorHandler(guardErrorHandler:GuardErrorHandler | null = null) {
+	guardErrorHandler_ = guardErrorHandler
+}
+
 /**
  * Get a value in a guarded fashion
  * ensuring no exception
@@ -15,6 +24,7 @@ export function getValue<T>(fn:() => T,defaultValue:T = null):T {
 	try {
 		result = fn()
 	} catch (err) {
+		guardErrorHandler_ && guardErrorHandler_(err)
 	}
 	
 	if (isNil(result))
@@ -34,6 +44,6 @@ export function guard(fn:() => any) {
 	try {
 		fn()
 	} catch (err) {
-		return
+		guardErrorHandler_ && guardErrorHandler_(err)
 	}
 }
