@@ -17,9 +17,7 @@ export function isNil(o:any):o is TNil {
  *
  * @param o
  */
-export function isDefined<T>(o:any):o is T
-export function isDefined(o:any):o is any
-export function isDefined(o:any) {
+export function isDefined<T>(o:T):o is T {
 	return !isNil(o)
 }
 
