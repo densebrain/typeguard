@@ -38,12 +38,14 @@ export function getValue<T>(fn:() => T,defaultValue:T = null):T {
  * Execute a function guarded from exception
  *
  * @param fn
+ * @param errorHandler
  * @returns {(fn:()=>any)=>(fn:()=>any)=>any}
  */
-export function guard(fn:() => any) {
+export function guard<T = any>(fn:() => T, errorHandler: ((err: Error) => void) | null = null):T | undefined {
 	try {
-		fn()
+		return fn()
 	} catch (err) {
+		errorHandler && errorHandler(err)
 		guardErrorHandler_ && guardErrorHandler_(err)
 	}
 }
