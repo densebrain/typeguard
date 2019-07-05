@@ -27,13 +27,15 @@ export function getValue<T>(fn:() => T, defaultValue:T = null, localErrorHandler
 		if (isPromise(result))
 			return result
 				.catch(err => {
-					errorHandler(err)
+					if (errorHandler)
+						errorHandler(err)
 
 					return defaultValue
 				})
 				.then(value => isNil(value) ? defaultValue : value) as any
 	} catch (err) {
-		errorHandler(err)
+		if (errorHandler)
+			errorHandler(err)
 	}
 
 	return isNil(result) ?
