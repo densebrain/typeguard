@@ -1,12 +1,12 @@
 
-import { isNil } from "./Guards"
+import {isNil, isPromise} from "./Guards"
 
 export type GuardErrorHandler = (err:Error) => void
 
-let guardErrorHandler_:GuardErrorHandler | null
+let globalErrorHandler:GuardErrorHandler | null
 
-export function setGuardErrorHandler(guardErrorHandler:GuardErrorHandler | null = null) {
-	guardErrorHandler_ = guardErrorHandler
+export function setGuardErrorHandler(errorHandler:GuardErrorHandler | null = null) {
+	globalErrorHandler = errorHandler
 }
 
 /**
@@ -15,22 +15,29 @@ export function setGuardErrorHandler(guardErrorHandler:GuardErrorHandler | null 
  *
  * @param fn
  * @param defaultValue
- * @returns {any}
+ * @returns {Promise<T | void> | any}
+ * @param localErrorHandler
  */
-export function getValue<T>(fn:() => T,defaultValue:T = null):T {
-	let
-		result
-	
+export function getValue<T>(fn:() => T, defaultValue:T = null, localErrorHandler: ((err: Error) => void) | null = null):T extends Promise<infer T2> ? Promise<T2> : T {
+	const errorHandler = localErrorHandler || globalErrorHandler
+	let result = null
+
 	try {
 		result = fn()
+		if (isPromise(result))
+			return result
+				.catch(err => {
+					errorHandler(err)
+
+					return defaultValue
+				})
+				.then(value => isNil(value) ? defaultValue : value) as any
 	} catch (err) {
-		guardErrorHandler_ && guardErrorHandler_(err)
+		errorHandler(err)
 	}
-	
-	if (isNil(result))
-		result = defaultValue
-	
-	return result
+
+	return isNil(result) ?
+		defaultValue : result
 }
 
 
@@ -38,14 +45,12 @@ export function getValue<T>(fn:() => T,defaultValue:T = null):T {
  * Execute a function guarded from exception
  *
  * @param fn
- * @param errorHandler
+ * @param localErrorHandler
  * @returns {(fn:()=>any)=>(fn:()=>any)=>any}
  */
-export function guard<T = any>(fn:() => T, errorHandler: ((err: Error) => void) | null = null):T | undefined {
-	try {
-		return fn()
-	} catch (err) {
-		errorHandler && errorHandler(err)
-		guardErrorHandler_ && guardErrorHandler_(err)
-	}
+export function guard<T = any>(fn:() => T, localErrorHandler: ((err: Error) => void) | null = null):void | Promise<void> {
+	const value = getValue(fn, undefined, localErrorHandler)
+	if (isPromise(value))
+		return value.then(() => undefined as void)
+
 }
