@@ -50,8 +50,8 @@ export function getValue<T>(fn:() => T, defaultValue:T = null, localErrorHandler
  * @param localErrorHandler
  * @returns {(fn:()=>any)=>(fn:()=>any)=>any}
  */
-export function guard<T = any>(fn:() => T, localErrorHandler: ((err: Error) => void) | null = null):void | Promise<void> {
-	const value = getValue(fn, undefined, localErrorHandler)
+export function guard<T>(fn:() => T, localErrorHandler: ((err: Error) => void) | null = null):void | Promise<void> {
+	const value = getValue<T>(fn, undefined, localErrorHandler)
 	if (isPromise(value))
 		return value.then(() => undefined as void)
 
