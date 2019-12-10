@@ -1,15 +1,16 @@
 {
   "name": "typeguard",
-  "version": "0.0.17",
+  "version": "0.1.0",
   "description": "TypeScript TypeGuards",
-  "main": "dist/index.js",
-  "typings": "dist/index.d.ts",
+  "main": "lib/index.js",
+  "typings": "lib/index.d.ts",
   "scripts": {
-    "compile": "tsc --project tsconfig.json",
-    "compile:watch": "tsc --project tsconfig.json --watch",
+    "build": "tsc -b tsconfig.json",
+    "build:watch": "tsc -b tsconfig.json --watch",
     "test": "jest",
     "test:watch": "jest --watch",
-    "release": "npm run compile && npm test && npm version patch && git push --tags && npm publish"
+    "postinstall": "yarn run build",
+    "release": "yarn build && yarn test && yarn version --minor && git push --tags && yarn publish"
   },
   "files": [
     "dist",
@@ -49,16 +50,14 @@
   },
   "homepage": "https://github.com/densebrain/typeguard#readme",
   "dependencies": {
-    "immutable": "^3.8.1",
     "lodash": "^4.16.6"
   },
   "devDependencies": {
-    "@types/immutable": "^3.8.4",
-    "@types/jest": "^15.1.32",
-    "@types/lodash": "^4.14.38",
-    "@types/node": "^6.0.46",
-    "jest": "^16.0.2",
-    "ts-jest": "0.1.8",
-    "typescript": "^2.1.0-dev.20161031"
+    "@types/jest": "^24.0.23",
+    "@types/lodash": "^4.14.149",
+    "@types/node": "^12.12.17",
+    "jest": "^25.0.0",
+    "ts-jest": "^24.2.0",
+    "typescript": "^3.7.3"
   }
 }
