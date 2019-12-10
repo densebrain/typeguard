@@ -1,6 +1,6 @@
 {
   "name": "typeguard",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "TypeScript TypeGuards",
   "main": "lib/index.js",
   "typings": "lib/index.d.ts",
@@ -10,8 +10,8 @@
     "test": "jest",
     "test:watch": "jest --watch",
     "postinstall": "yarn run build",
-    "postversion": "git push --tags && yarn publish . --tag $npm_package_version && git push && echo \"Successfully released version $npm_package_version!\"",
-    "release": "yarn build && yarn test && yarn version --minor"
+    "postversion": "git push --tags && yarn publish . --non-interactive --tag $npm_package_version && git push && echo \"Successfully released version $npm_package_version!\"",
+    "release": "yarn build && yarn test && yarn version --patch --non-interactive"
   },
   "files": [
     "dist",
