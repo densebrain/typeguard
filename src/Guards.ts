@@ -1,5 +1,4 @@
 
-import { List, Map, Record } from 'immutable'
 import _isNil = require('lodash/isNil')
 import _isObject = require('lodash/isObject')
 import _isString = require('lodash/isString')
@@ -22,15 +21,6 @@ export function isDefined(o:any):o is any
 export function isDefined(o:any) {
 	return !isNil(o)
 }
-
-export function isList(o:any):o is List<any> {
-	return !isNil(o) && !isMap(o) && (List.isList(o))
-}
-
-export function isMap(o:any):o is Map<any,any> {
-	return !isNil(o) && (Map.isMap(o) || o instanceof Record)
-}
-
 
 export function isObject(o:any):o is Object {
 	return !isNil(o) && _isObject(o)

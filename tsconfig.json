@@ -15,25 +15,13 @@
 		"preserveConstEnums": true,
 		"allowSyntheticDefaultImports": true,
 		"sourceMap": true,
-		"pretty": true,
-		"outDir": "./dist",
-		
-		"paths": {
-			"*": [
-				"./*"
-			],
-			"typeguard": [
-				"./index"
-			],
-			"typeguard/*": [
-				"./*"
-			]
-		},
-		"baseUrl": "./src"
+		"outDir": "./lib",
+		"baseUrl": "./"
 	},
 	"compileOnSave": true,
+	"include": ["src"],
 	"exclude": [
-		"dist",
+		"lib",
 		"node_modules"
 	]
 	

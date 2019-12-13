@@ -13,7 +13,7 @@ test(`getValue`,() => {
 		throw new Error('err')
 	},1)).toBe(1)
 	expect(errorHandled).toBeTruthy()
-	expect(getValue(throwErr)).toBeNull()
+	expect(getValue(throwErr)).toBeUndefined()
 	expect(getValue(() => 123,1)).toBe(123)
 })
 

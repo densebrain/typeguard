@@ -1,5 +1,6 @@
 
 import {isNil, isPromise} from "./Guards"
+import { ErrorHandler, Optional } from "./Types"
 
 export type GuardErrorHandler = (err:Error) => void
 
@@ -8,6 +9,9 @@ let globalErrorHandler:GuardErrorHandler | null
 export function setGuardErrorHandler(errorHandler:GuardErrorHandler | null = null) {
 	globalErrorHandler = errorHandler
 }
+
+
+
 
 /**
  * Get a value in a guarded fashion
@@ -18,7 +22,11 @@ export function setGuardErrorHandler(errorHandler:GuardErrorHandler | null = nul
  * @returns {Promise<T | void> | any}
  * @param localErrorHandler
  */
-export function getValue<T>(fn:() => T, defaultValue:T = null, localErrorHandler: ((err: Error) => void) | null = null):T extends Promise<infer T2> ? Promise<T2> : T {
+export function getValue<T>(
+	fn:() => T,
+	defaultValue:Optional<T> = undefined,
+	localErrorHandler: Optional<ErrorHandler> = undefined
+):T extends Promise<infer T2> ? Promise<T2> : T {
 	const errorHandler = localErrorHandler || globalErrorHandler
 	let result = null
 
