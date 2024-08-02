@@ -16,7 +16,13 @@
 		"allowSyntheticDefaultImports": true,
 		"sourceMap": true,
 		"outDir": "./lib",
-		"baseUrl": "./"
+		"baseUrl": "./",
+		"strict": false,
+		"alwaysStrict": false,
+		"noImplicitAny": false,
+		"skipLibCheck": true,
+		"skipDefaultLibCheck": true,
+		"preserveWatchOutput": true
 	},
 	"compileOnSave": true,
 	"include": ["src"],

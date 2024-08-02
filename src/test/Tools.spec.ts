@@ -1,4 +1,4 @@
-import 'jest'
+import jest from 'jest'
 import { guard,getValue, setGuardErrorHandler } from "../index"
 
 
